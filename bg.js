@@ -4,10 +4,38 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     }
 });
 
-chrome.pageAction.onClicked.addListener(()=>{
-    chrome.tabs.getSelected(null, (tab) =>{
-        chrome.tabs.sendMessage(tab.id, {action: "img"}, (response)=>{
-
+function getSaveNamefromStorage() {
+    return new Promise((resolve) => {
+        chrome.storage.sync.get({
+            SaveName: 'shinycolors_screenshot',
+            DirectoryName: 'shinycolors_screenshot',
+        }, (item) => {
+            resolve(item);
         });
     });
+}
+
+chrome.pageAction.onClicked.addListener(()=>{
+    chrome.tabs.getSelected(null, (tab) =>{
+        (async() => {
+            const useritem = await getSaveNamefromStorage();
+            chrome.tabs.sendMessage(tab.id, {
+                imagename: useritem.SaveName,
+                directoryname: useritem.DirectoryName,
+            }, null);
+        })();
+    });
+});
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse)=>{
+    if(message.type == "dataurl"){
+        var savedirectory = message.directoryname;
+        if(savedirectory != ""){
+            savedirectory += "/";
+        }
+        chrome.downloads.download({
+            url: message.dataurl,
+            filename: savedirectory + message.imagename + '.png'
+        });
+    }
 });

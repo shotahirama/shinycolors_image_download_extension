@@ -1,10 +1,12 @@
 {
   "manifest_version": 2,
-  "name": "ShinyColors Image Download",
+  "name": "ShinyColors ScreenShot",
   "version": "1",
-  "description": "ShinyColors Image Download",
+  "description": "ScreenShot for IDOLM@STER ShinyColors",
   "permissions": [
-    "tabs"
+    "tabs",
+    "storage",
+    "downloads"
   ],
   "background": {
     "scripts": ["bg.js"],
@@ -14,10 +16,26 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://shinycolors.enza.fun/*"],
+      "matches": [
+        "https://shinycolors.enza.fun/*"
+      ],
       "js": [
         "content_test.js"
       ]
     }
-  ]
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "commands": {
+    "_execute_page_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "windows": "Ctrl+Shift+S",
+        "mac": "Ctrl+Shift+S",
+        "linux": "Ctrl+Shift+S"
+      }
+    }
+  }
 }
