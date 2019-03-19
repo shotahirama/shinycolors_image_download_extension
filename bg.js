@@ -15,16 +15,28 @@ function getSaveNamefromStorage() {
     });
 }
 
+async function callCapture(tab){
+    const useritem = await getSaveNamefromStorage();
+    chrome.tabs.sendMessage(tab.id, {
+        imagename: useritem.SaveName,
+        directoryname: useritem.DirectoryName,
+    }, null);
+}
+
 chrome.pageAction.onClicked.addListener(()=>{
     chrome.tabs.getSelected(null, (tab) =>{
-        (async() => {
-            const useritem = await getSaveNamefromStorage();
-            chrome.tabs.sendMessage(tab.id, {
-                imagename: useritem.SaveName,
-                directoryname: useritem.DirectoryName,
-            }, null);
-        })();
+        callCapture(tab);
     });
+});
+
+chrome.commands.onCommand.addListener(command => {
+    if(command == 'capture_command'){
+        chrome.tabs.query({active: true, currentWindow: true}, results=>{
+            if(results[0].url.includes('https://shinycolors.enza.fun/')){
+                callCapture(results[0]);
+            }
+        });
+    }
 });
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse)=>{

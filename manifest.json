@@ -29,13 +29,11 @@
     "open_in_tab": false
   },
   "commands": {
-    "_execute_page_action": {
+    "capture_command": {
       "suggested_key": {
-        "default": "Ctrl+Shift+S",
-        "windows": "Ctrl+Shift+S",
-        "mac": "Ctrl+Shift+S",
-        "linux": "Ctrl+Shift+S"
-      }
+        "default": "Ctrl+Shift+S"
+      },
+      "description": "Call Capture Function"
     }
   }
 }
