@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>POPUP PAGE</title>
+        <style>
+            body {
+                max-width: 600px;
+                min-width: 400px;
+            }
+
+            .screenshotdiv {
+                text-align: center;
+            }
+
+            .btn-flat-border {
+                width: 100%;
+                text-align: center;
+                font-size: 2em;
+                display: inline-block;
+                padding: 0.3em 1em;
+                text-decoration: none;
+                color: #67c5ff;
+                border: solid 2px #67c5ff;
+                border-radius: 3px;
+                transition: .4s;
+            }
+
+            .btn-flat-border:hover {
+                background: #67c5ff;
+                color: white;
+            }
+            </style>
+    </head>
+    <body>
+        <h1>OPTIONS</h1>
+        <p>
+        SAVE FILE NAME:         <input type="text" id="savename">
+        </p>
+        <p>
+        SAVE DIRECTORY NAME:    <input type="text" id="directoryname">
+        </p>
+        <div id="status"></div>
+        <br>
+        <button id="save">OPTION SAVE</button>
+        <div class="screenshotdiv">
+            <h1>ScreenShot</h1>
+            <button id="screenshot" class="btn-flat-border">SS</button>
+        </div>
+
+        <script src="popup.js"></script>
+    </body>
+</html>

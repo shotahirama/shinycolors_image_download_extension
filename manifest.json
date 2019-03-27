@@ -3,16 +3,24 @@
   "name": "ShinyColors ScreenShot",
   "version": "1",
   "description": "ScreenShot for IDOLM@STER ShinyColors",
+  "icons": {
+    "16": "images/shinycolorsicon.png",
+    "48": "images/shinycolorsicon.png",
+    "128": "images/shinycolorsicon.png"
+  },
   "permissions": [
     "tabs",
     "storage",
-    "downloads"
+    "downloads",
+    "contextMenus"
   ],
   "background": {
     "scripts": ["bg.js"],
     "persistent": false
   },
   "page_action": {
+    "default_popup": "popup.html",
+    "default_icon": "images/shinycolorsicon.png"
   },
   "content_scripts": [
     {
@@ -24,10 +32,6 @@
       ]
     }
   ],
-  "options_ui": {
-    "page": "options.html",
-    "open_in_tab": false
-  },
   "commands": {
     "capture_command": {
       "suggested_key": {

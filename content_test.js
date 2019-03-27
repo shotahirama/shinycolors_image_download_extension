@@ -2,7 +2,7 @@ chrome.extension.onMessage.addListener((request, sender, sendResponse)=> {
     var canvas = document.getElementsByTagName("canvas");
     if(canvas.length > 0){
         var c1 = canvas[0];
-        var ms = c1.captureStream(60);
+        var ms = c1.captureStream(0);
         var track = ms.getVideoTracks()[0];
         let imageCapture = new ImageCapture(track);
         var cc = c1.cloneNode();
